@@ -1,21 +1,243 @@
-:root{
-  --bg: #f6f8ff;
+:root {
+  --bg: #fff;
 }
-*{ box-sizing:border-box; }
-html,body,#app{ height:100%; margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial; background: var(--bg); color:#222; }
-.page{ padding:18px 6px 40px; min-height:100vh; display:flex; flex-direction:column; align-items:center; }
-.hero-illustration{
-  width:100%;
-  height:120px;
-  background: linear-gradient(180deg, rgba(255,236,240,0.6), rgba(240,248,255,0.6));
-  border-radius:16px;
-  margin-bottom: -40px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.03);
-}
-.card-wrap{ width:100%; display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:14px; }
-.footer-note{ color:#9aa; font-size:.75rem; margin-top:auto; padding-bottom:6px; }
 
-@media (min-width:900px){
-  .page{ padding:32px 80px; }
-  .card-wrap{ flex-direction:row; gap:20px; justify-content:center; align-items:flex-start; }
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial;
+    background: var(--bg);
+    color: #222;
+}
+
+
+.page {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background: transparent; /* 背景透明，露出底圖 */
+  min-height: 100vh;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Banner */
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw; /* 佔滿整個視窗寬度 */
+  height: 240px; /* 依實際需要可調整高度 */
+  background: url('/src/assets/banner.jpeg') center/cover no-repeat;
+  z-index: 0; /* 壓在最底層 */
+}
+
+/* Profile */
+.profile {
+  margin-top: 110px;
+}
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+.name {
+  margin-top: 10px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.name span {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+}
+.title {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 8px;
+}
+.intro {
+  margin-top: 12px;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* Skills */
+.skills {
+  margin-top: 40px;
+}
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.skill-icon {
+  width: 44px;
+  height: 44px;
+}
+.skill-tags {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.tag {
+  border: 1px solid #000;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+}
+
+/* Buttons */
+.files {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+.btn {
+  border: 1px solid #000;
+  border-radius: 999px;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+/* 分別設定背景色 */
+.btn-portfolio {
+  background-color: #EFEC64; /* 綠色 */
+}
+
+.btn-portfolio:hover {
+  background-color: #d2d162;
+}
+
+.btn-resume {
+  background-color: #86DBEB; /* 藍色 */
+}
+
+.btn-resume:hover {
+  background-color: #74c0cf;
+}
+
+
+/* Projects */
+.projects {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 600px;
+}
+.projects h2 {
+  margin-bottom: 20px;
+}
+.project-card {
+  display: flex;
+  align-items: center; /* 垂直置中 */
+  gap: 20px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 18px;
+  background: #fff;
+}
+.project-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.project-info {
+  text-align: left;
+}
+.project-info h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.project-english {
+  font-size: 0.8rem;
+  color: #555;
+  /* display: block; 如果想換行 */
+}
+
+.project-info p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+}
+.date {
+  color: #666;
+  font-size: 0.8rem;
+}
+.footer-note {
+  margin-top: 40px;
+  padding-bottom: 1%;
+  text-align: center;
+}
+
+.downloadicon{
+    width: auto;
+    height: 15px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* LinkedIn 圖片 */
+.linkedin-link img.linkedin-img {
+  width: 40px;
+  height: 40px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.linkedin-link img.linkedin-img:hover,
+.linkedin-link img.linkedin-img:active {
+  content: url(/src/assets/Linkedin_hover.svg);
+}
+
+/* 電話與 Email 水平排列 */
+.contact-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.contact-item:hover {
+  opacity: 0.8;
+}
+
+.contact-item .icon {
+  font-size: 1.2rem;
 }

@@ -22,14 +22,20 @@ a,
 }
 
 @media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
   #app {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;  /* 單欄 */
+    justify-items: center;       /* 水平置中 */
+    gap: 20px;                   /* 卡片間距 */
+    /* max-width: 500px; */
+    margin: 0 auto;
     padding: 0 2rem;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
