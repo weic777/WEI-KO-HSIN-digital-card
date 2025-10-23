@@ -46,8 +46,8 @@ body,
   margin-top: 110px;
 }
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: auto;
+  height: 150px;
   border-radius: 50%;
   border: 4px solid #fff;
   object-fit: cover;
@@ -70,13 +70,46 @@ body,
 }
 .intro {
   margin-top: 12px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: #444;
+  text-align: center;
+}
+
+/* 中文與英文標題字體 */
+.intro-title {
+  font-weight: 700;
+  display: inline-block;
+}
+
+.intro-title.zh {
+  font-size: 1.05rem; /* 中文稍大 */
+  letter-spacing: 0.5px;
+}
+
+.intro-title.en {
+  font-size: 1rem; /* 英文略小一點 */
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* 粉紅色 × */
+.divider-x {
+  color: #FBB2AD; /* 柔粉色 */
+  font-weight: 700;
+  margin: 0 4px;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;   /* ✅ 超出自動換行 */
+  gap: 6px;          /* ✅ 標籤間距 */
+  margin-top: 6px;   /* ✅ 與上方文字的距離 */
+  align-items: center;
 }
 
 /* Skills */
 .skills {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 .icon-grid {
   display: flex;
@@ -101,7 +134,16 @@ body,
   border-radius: 999px;
   padding: 2px 10px;
   font-size: 0.85rem;
+  transition: all 0.2s ease;     /* 滑順過渡 */
+  cursor: default;
 }
+
+.tag:hover {
+  background-color: #FBB2AD33;   /* 淡粉透明背景 (#FBB2AD + 20%透明度) */
+  color: #000;
+  border-color: #FBB2AD;         /* 邊框也變粉 */
+}
+
 
 /* Buttons */
 .files {
@@ -137,6 +179,21 @@ body,
   background-color: #74c0cf;
 }
 
+.section-title {
+  font-weight: 800;          /* 粗體 */
+  font-size: 1.4rem;         /* 標題大小 */
+  text-align: center;        /* 置中 */
+  letter-spacing: 1px;       /* 微調字距 */
+  margin-bottom: 20px;       /* 下方間距 */
+}
+
+.section-title span {
+  font-weight: 600;          /* 英文略細 */
+  font-size: 1rem;
+  display: block;            /* 英文換行 */
+  margin-top: 4px;
+  color: #444;
+}
 
 /* Projects */
 .projects {
@@ -186,6 +243,7 @@ body,
   font-size: 0.8rem;
 }
 .footer-note {
+    width: 100%;
   margin-top: 40px;
   padding-bottom: 1%;
   text-align: center;
@@ -200,44 +258,155 @@ body,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 12px;
 }
 
-/* LinkedIn 圖片 */
 .linkedin-link img.linkedin-img {
-  width: 40px;
-  height: 40px;
-  transition: 0.2s;
-  cursor: pointer;
+  width: 30px;
+  height: 30px;
 }
 
-.linkedin-link img.linkedin-img:hover,
-.linkedin-link img.linkedin-img:active {
-  content: url(/src/assets/Linkedin_hover.svg);
-}
-
-/* 電話與 Email 水平排列 */
-.contact-row {
+.contact-column {
   display: flex;
-  gap: 16px;
-  margin-top: 8px;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   text-decoration: none;
   color: #222;
-  font-weight: 500;
-  transition: opacity 0.2s;
 }
 
-.contact-item:hover {
-  opacity: 0.8;
+.contact-item img.icon {
+  width: 24px;
+  height: 24px;
+}
+.divider {
+  width: 100%;           /* 佔滿父容器 */
+  height: 1px;
+  background-color: #ccc;
+  margin: 20px 0;        /* 上下距離 */
+  padding: 0 20px;       /* 左右內距限制線條不貼邊 */
 }
 
-.contact-item .icon {
-  font-size: 1.2rem;
+/* ====== 基本初始狀態 ====== */
+.banner, section, .footer-note {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
+}
+
+.banner.visible.replay,
+section.visible.replay,
+.footer-note.visible.replay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== Banner ====== */
+.banner {
+  transform: scale(0.95);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.banner.visible.replay {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ====== Skills icon 淡入動畫 ====== */
+.icon-grid img {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.4s ease;
+}
+.skills.visible.replay .icon-grid img {
+  opacity: 1;
+  transform: scale(1);
+}
+.skills.visible.replay .icon-grid img:nth-child(1) { transition-delay: 0.1s; }
+.skills.visible.replay .icon-grid img:nth-child(2) { transition-delay: 0.15s; }
+.skills.visible.replay .icon-grid img:nth-child(3) { transition-delay: 0.2s; }
+.skills.visible.replay .icon-grid img:nth-child(4) { transition-delay: 0.25s; }
+.skills.visible.replay .icon-grid img:nth-child(5) { transition-delay: 0.3s; }
+
+/* ====== Project Cards ====== */
+.project-card {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+.projects.visible.replay .project-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+.projects.visible.replay .project-card:nth-child(1) { transition-delay: 0.1s; }
+.projects.visible.replay .project-card:nth-child(2) { transition-delay: 0.25s; }
+
+/* ====== Footer ====== */
+.footer-note {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.footer-note.visible.replay {
+  opacity: 1;
+}
+/* === 無限輪播 === */
+.icon-marquee {
+  position: relative;
+  overflow: hidden;
+  width: 100vw; /* 佔滿螢幕 */
+  margin-left: calc(-50vw + 50%);
+  
+  /* 左右漸層遮罩 */
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+
+.marquee-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: scroll-left 50s linear infinite;
+}
+
+.skill-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+
+/* === 動畫 === */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* RWD */
+@media (max-width: 768px) {
+  .skill-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .marquee-track {
+    gap: 1rem;
+    animation-duration: 50s;
+  }
 }
