@@ -36,7 +36,7 @@
           </a>
         </div>
       </div>
-
+<!-- 作品集按鈕 --> <section class="files"> <a :href="portfolioView" target="_blank" class="btn btn-portfolio"> 作品集 Portfolio <img :src="downloadIcon" alt="download" class="downloadicon" /> </a> <a :href="resumeView" target="_blank" class="btn btn-resume"> 履歷 Resume <img :src="downloadIcon" alt="download" class="downloadicon" /> </a> </section>
       <!-- 個人介紹 -->
                  <div class="divider"></div>
 <p class="intro">
@@ -134,7 +134,7 @@ const skillTags = [
 // 作品資料
 const projects = [
   {
-    nameZh: '北花冊',
+    nameZh: '北花冊 (團體協作)',
     nameEn: 'Bloomchure',
     desc: '北區賞花季，一頁收藏所有花事，北區花卉資訊整合平台',
     date: '2025',
